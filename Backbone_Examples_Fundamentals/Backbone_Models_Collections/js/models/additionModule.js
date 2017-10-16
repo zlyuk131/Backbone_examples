@@ -3,15 +3,25 @@ var AdditionModule = ExerciseModule.extend({
     //extend default properties inherited from parent class
     defaults: function() {
         return _.extend(ExerciseModule.prototype.defaults(), {
-            type: "addition"
+            type: "addition",
+            exercises: []
         });
     },
+
+    initialize: function() {
+        //call parent constructor first
+        ExerciseModule.prototype.initialize.apply(this);
+        //execute addition function
+        this.addition();
+    },
+    
     addition: function() {
         var self = this,
             a, b, result,
+            seteps = self.get("steps"),
             toReturn = [];
         
-        for(var i = 0; i < self.get("steps"); i++) {
+        for(var i = 0; i < seteps; i++) {
             a = ExerciseModule.prototype.getRandomInt(0, 100);
             b = ExerciseModule.prototype.getRandomInt(0, 100);
             result = a + b; 
@@ -21,6 +31,6 @@ var AdditionModule = ExerciseModule.extend({
             });
         }
 
-        return toReturn;
+        this.set("exercises", toReturn);
     },
 });
