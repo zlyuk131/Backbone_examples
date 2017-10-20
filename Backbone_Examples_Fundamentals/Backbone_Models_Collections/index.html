@@ -1,66 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Backbone.js Models and Collections</title>
-  <style>
-    span {
-      padding: 0 0.5em;
-    }
-    .expression-container {
-      position:relative;
-      margin-bottom: 2px;
-    }
-    .expression-body {
-      width:6em;
-    }
-    .expr-sum {
-      position: absolute;
-      left: 3.5em;
-      width:1em;
-      text-align: center;
-    }
-    .expression-result{
-      position: absolute;      
-      left: 7em;
-      width: 2em;
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Backbone.js Models and Collections</title>
+ <style>
+   span {
+     padding: 0 0.5em;
+   }
+   .expression-container {
+     position:relative;
+     margin-bottom: 2px;
+   }
+   .expression-body {
+     width:6em;
+   }
+   .expr-sum {
+     position: absolute;
+     left: 3.5em;
+     width:1em;
+     text-align: center;
+   }
+   .expression-result{
+     position: absolute;     
+     left: 7em;
+     width: 2em;
 
-    }
-    .expression-result.correct{
-      border: 2px solid green;
-    }
-    .expression-result.incorrect{
-      border: 2px solid red;
-    }
-  </style>
+   }
+   .expression-result.correct{
+     border: 2px solid green;
+   }
+   .expression-result.incorrect{
+     border: 2px solid red;
+   }
+ </style>
 </head>
 <body>
-  <div class="introduction">
-    <h2>Backbone.js Models and Collections Example</h2>
-    <p class="formatted-text">
-      Example shows how to create and extend backbone.js Model. 
-      Create a Backbone collection and add extended model to it.
-    </p>  
+ <div class="introduction">
+   <h2>Backbone.js Models and Collections Example</h2>
+   <p class="formatted-text">
+     Example shows how to create and extend backbone.js Model.
+     Create a Backbone collection and add extended model to it.
+   </p> 
 
-  </div>
-  <div  id="container" >
-    ..Loading
-  </div>
+ </div>
+ <div  id="container" >
+   ..Loading
+ </div>
 
-  <script >
-  
+ <script >
   </script>
-  <script type="text/javascript" src="../../lib/jquery.js"></script>
-  <script type="text/javascript" src="../../lib/bootstrap.js"></script>
-  <script type="text/javascript" src="../../lib/underscore.js"></script>
-  <script type="text/javascript" src="../../lib/backbone.js"></script>
-  <!-- <script type="text/javascript" src="http://requirejs.org/docs/release/2.2.0/minified/require.js"></script> -->
-  <!-- Main script -->
-  <!-- <script type="text/javascript" src="js/view.js"></script> -->
-  <script type="text/javascript" src="js/models/exerciseModule.js"></script>
-  <script type="text/javascript" src="js/models/additionModule.js"></script>
-  <script type="text/javascript" src="js/collections/additionModules.js"></script>
+ <script type="text/javascript" src="../lib/jquery.js"></script>
+ <script type="text/javascript" src="../lib/underscore.js"></script>
+ <script type="text/javascript" src="../lib/backbone.js"></script>
+ <!-- <script type="text/javascript" src="http://requirejs.org/docs/release/2.2.0/minified/require.js"></script> -->
+ <!-- Main script -->
+ <!-- <script type="text/javascript" src="js/view.js"></script> -->
+ <script type="text/javascript" src="js/models/exerciseModule.js"></script>
+ <script type="text/javascript" src="js/models/generatorModule.js"></script>
+ <script type="text/javascript" src="js/collections/generatorModules.js"></script>
 </body>
 </html>
