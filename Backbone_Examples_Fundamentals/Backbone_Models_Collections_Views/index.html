@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title>Backbone.js Models and Collections</title>
+ <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+ <div class="introduction">
+   <h2>Backbone.js Models, Collections and Views Example</h2>
+   <p class="formatted-text">
+     Extending
+   </p> 
+
+ </div>
+ <div  id="container" >
+   ..Loading
+ </div>
+ <!-- template for each exercise in module -->
+ <script type="text/template" id="exercisemodule-view">
+   <div class="expression-container">
+       <span class="expression-body"><%= expression %></span>
+       <span class="expr-sum">&nbsp;=&nbsp;</span>
+       <input type="text" class="expression-result"
+       data-value="<%= result %>"/>
+       <button class="validate-answer">Validate</button>
+       <span class="answer-icon">
+         <span class="correct-icon">Correct</span>
+         <span class="incorrect-icon">Incorrect</span>
+       </span>
+   </div>
+ </script>
+  <script type="text/javascript" src="../lib/jquery.js"></script>
+ <script type="text/javascript" src="../lib/underscore.js"></script>
+ <script type="text/javascript" src="../lib/backbone.js"></script>
+ <!-- <script type="text/javascript" src="http://requirejs.org/docs/release/2.2.0/minified/require.js"></script> -->
+ <!-- Main script -->
+ <script type="text/javascript" src="js/models/exerciseModule.js"></script>
+ <script type="text/javascript" src="js/models/generatorModule.js"></script>
+ <script type="text/javascript" src="js/collections/generatorModules.js"></script>
+ <script type="text/javascript" src="js/views/generateModuleView.js"></script>
+ <script type="text/javascript" src="js/views/modulesView.js"></script> 
+</body>
+</html>
+
