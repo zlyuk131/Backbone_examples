@@ -31,7 +31,7 @@ var GeneratorModule = ExerciseModule.extend({
             this.genereateTest();
         }
     },
-    setNextStep: function() {
+    setNextStep: function(currentIndex) {
         this.set("numAttempts", 1);
         this.set("currentStep", currentIndex + 1);
     },

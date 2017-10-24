@@ -12,15 +12,21 @@ var GenerateModuleView = Backbone.View.extend({
     },
  
     onValidate: function() {
-        var self = this;
-            inputVal = this.$el.find(".expression-result").val();
-            answer = this.$el.find(".expression-result").data("value");
+        var self = this,
+            inputVal = this.$el.find(".expression-result").val(),
+            answer = this.$el.find(".expression-result").data("value"),
             currentIndex = this.model.get("currentStep");
         if(Number(inputVal) === answer) {
+            let numSteps = this.model.get("steps");
             //pass to the next test executed once per view lifecycle
-            this.model.setNextStep();           
+            this.model.setNextStep(currentIndex);           
             this.$el.find(".expression-container").removeClass("incorrect");
             this.$el.find(".expression-container").addClass("correct");
+            //if it is final step, !get form model updated in setNextStep
+            if(this.model.get("currentStep") === numSteps) {
+                //set flag that exercise is complete
+                this.model.set("isComplete", true);               
+            }
             setTimeout(_.bind(self.render, self), 4000);
         } else {
             let numAttempts = this.model.get("numAttempts");
@@ -48,7 +54,11 @@ var GenerateModuleView = Backbone.View.extend({
                 exercise = this.model.get("exercises")[currentIndex];
                 self.$el.html(self.template(exercise));
             return this;
+               //remove view after exercise is complete
+        } else if (this.model.get("isComplete")) {
+            this.remove();
         }
+
     },
  
     onEnter: function(e) {
