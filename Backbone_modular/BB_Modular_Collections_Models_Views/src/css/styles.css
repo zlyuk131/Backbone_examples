@@ -1,0 +1,62 @@
+span {
+    padding: 0 0.5em;
+  }
+  .expression-container {
+    position:relative;
+    margin-bottom: 2px;
+  }
+  .expression-body {
+    width:6em;
+  }
+  .expr-sum {
+    position: absolute;
+    left: 3.5em;
+    width:1em;
+    text-align: center;
+  }
+  .expression-result{
+    position: absolute;     
+    left: 7em;
+    width: 2em;
+ 
+  }
+  .correct .expression-result{
+    border: 2px solid green;
+  }
+  .incorrect .expression-result{
+    border: 2px solid red;
+  }
+  .validate-answer {
+    position: absolute;
+    left:9.5em;
+  }
+  .correct .validate-answer {
+    display: none;
+  }
+  .fail .validate-answer {
+    display: none;
+  }
+  /* Do not display */
+  .answer-icon {
+    position: absolute;
+    left:9.5em;
+    display: none;
+  }
+  .correct .answer-icon,
+  .correct .correct-icon {
+    display: inline-block;
+  }
+  .fail .answer-icon,
+  .fail .incorrect-icon{
+    display: inline-block;
+  }
+ 
+  .correct-icon {
+    display: none;
+    color: greenyellow;
+  }
+  .incorrect-icon {
+    display: none;
+    color: red;
+  }
+ 
