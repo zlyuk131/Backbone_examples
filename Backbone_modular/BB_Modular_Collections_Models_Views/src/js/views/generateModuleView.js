@@ -1,32 +1,42 @@
 define([
-    "jquery","underscore","backbone","handlebars",
+    "jquery","underscore","backbone",
     "../../templates/templates"
     ], 
-    function ($, _, Backbone,Handlebars,Templates){
+    function ($, _, Backbone,Templates){
 
     
     var GenerateModuleView = Backbone.View.extend({
         tagName: "section",
+
         className: "exercise-group",
+
         template: Templates.exercise,
+
         events: {
             "keyup .expression-result": "onEnter",
             "click .validate-answer": "onValidate"
         },
     
-        initialize: function() {
-    
+        initialize: function(options) {
+            //get event bus from parent view
+            this.bus = options.bus;
         },
-    
+
         onValidate: function() {
             var self = this,
                 inputVal = this.$el.find(".expression-result").val(),
                 answer = this.$el.find(".expression-result").data("value"),
                 currentIndex = this.model.get("currentStep");
+
             if(Number(inputVal) === answer) {
-                let numSteps = this.model.get("steps");
+                let numSteps = this.model.get("steps"),
+                    successRate = this.model.get("sucessRate");
                 //pass to the next test executed once per view lifecycle
-                this.model.setNextStep(currentIndex);           
+                this.model.setNextStep(currentIndex);
+
+                //update success rate
+                this.model.set("successRate", successRate + 1);
+
                 this.$el.find(".expression-container").removeClass("incorrect");
                 this.$el.find(".expression-container").addClass("correct");
                 //if it is final step, !get form model updated in setNextStep
@@ -36,14 +46,18 @@ define([
                 }
                 setTimeout(_.bind(self.render, self), 4000);
             } else {
-                let numAttempts = this.model.get("numAttempts");
-            
+                let numAttempts = this.model.get("numAttempts"),
+                    failRate = this.model.get("failRate");
+                
                 if(numAttempts < this.model.get("maxAttempts")) {
-                    this.model.set("numAttempts", numAttempts+1);
+                    //update fail rate
+                    this.model.set("failRate", failRate + 1);
+                    //incriment number of attempts
+                    this.model.set("numAttempts", numAttempts++);
                     this.$el.find(".expression-container").addClass("incorrect");
                 } else {
-                    //reset number of attempts
-                    this.model.setNextStep();
+                    //set flag that exercise is complete
+                    this.model.set("isComplete", true); 
                     //pass to the next test, executed once per view lifecycle
                     this.$el.find(".expression-container").addClass("fail");
                     setTimeout(_.bind(self.render, self), 4000);
@@ -63,6 +77,8 @@ define([
                 return this;
                 //remove view after exercise is complete
             } else if (this.model.get("isComplete")) {
+                //pass event to parent class to display results
+                this.bus.trigger("exerciseComplete", self.model);
                 this.remove();
             }
 
@@ -74,21 +90,21 @@ define([
             }
         },
     
-        evaluateAnswer: function(e) {
-        var inputVal = $(e.currentTarget).val(),
-            answer = $(e.currentTarget).data("value");
+        // evaluateAnswer: function(e) {
+        // var inputVal = $(e.currentTarget).val(),
+        //     answer = $(e.currentTarget).data("value");
     
-            $(e.currentTarget).attr("class", "expression-result");
+        //     $(e.currentTarget).attr("class", "expression-result");
     
-            if(inputVal.length > 0) {
+        //     if(inputVal.length > 0) {
     
-                if (Number(inputVal) === answer) {
-                    $(e.currentTarget).addClass("correct");
-                } else {
-                    $(e.currentTarget).addClass("incorrect");
-                }
-            }
-        }
+        //         if (Number(inputVal) === answer) {
+        //             $(e.currentTarget).addClass("correct");
+        //         } else {
+        //             $(e.currentTarget).addClass("incorrect");
+        //         }
+        //     }
+        // }
     });
     return GenerateModuleView;
 });

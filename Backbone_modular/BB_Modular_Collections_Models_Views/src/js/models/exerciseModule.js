@@ -20,6 +20,7 @@ define([
             sucessRate: 0,
             failRate: 0,
             overallRate: 0, //success rate
+            isPassed: false, //indicate if exercise is passed
             isComplete: false
         };
     },
@@ -61,6 +62,10 @@ define([
     },
     checkIsComplete: function() {
         if (this.get("currentStep") === this.get("steps")) {
+            //if success rate is >= 50%
+            if(this.get("overallRate") >= 50) {
+                this.set("isPassed", true);
+            }
             this.set("isComplete", true);
         }
     }

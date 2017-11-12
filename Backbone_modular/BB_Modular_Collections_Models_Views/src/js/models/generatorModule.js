@@ -7,6 +7,8 @@ define([
     var GeneratorModule = ExerciseModule.extend({
         //extend default properties inherited from parent class
         defaults: function() {
+            /*options to set up new exercise test*/
+            //TODO future add inteface to setup test
             return _.extend(ExerciseModule.prototype.defaults(), {
                 testType: "",
                 operator: "",
@@ -50,7 +52,7 @@ define([
                 toReturn = [];
     
             if(operator) {
-                for(var i = 0; i < seteps; i++) {
+                for(let i = 0; i < seteps; i++) {
                     a = self.getRandomInt(0, 100);
                     b = self.getRandomInt(0, 100);
                     switch(operator) {

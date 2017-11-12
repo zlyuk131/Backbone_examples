@@ -1,0 +1,14 @@
+<div id="exercise-results">
+    <div class="answer-counter">
+        <div class="correc">Correct answers:{{sucessRate}}</div>
+        <div class="incorrec">Incorrect answers:{{failRate}}</div>
+        <button class="continue">Continue</button>
+    </div>
+    <div class="answer-icon">
+        {{#if isPassed}}
+        <span class="icon-correct"></span>
+        {{else}}
+        <span class="icon-incorrect"></span>
+        {{/if}}
+    </div>
+</div>
