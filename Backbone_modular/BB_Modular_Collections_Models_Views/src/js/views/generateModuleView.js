@@ -1,13 +1,14 @@
 define([
-    "jquery","underscore","backbone"
+    "jquery","underscore","backbone","handlebars",
+    "../../templates/templates"
     ], 
-    function ($, _, Backbone){
+    function ($, _, Backbone,Handlebars,Templates){
 
     
     var GenerateModuleView = Backbone.View.extend({
         tagName: "section",
         className: "exercise-group",
-        template: _.template($("#exercisemodule-view").html()),
+        template: Templates.exercise,
         events: {
             "keyup .expression-result": "onEnter",
             "click .validate-answer": "onValidate"
