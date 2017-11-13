@@ -21,22 +21,22 @@ define([
         //initialize event bus handlers
         initEvents: function() {
             //dis
-            this.bus.on("exerciseComplete", this.displayScore);
+            this.bus.on("exerciseComplete", this.displayScore, this);
         },
 
-        displayScore: function(args) {
-            console.log(args);
-
+        displayScore: function(exerciseModel) {
+            //instanciate score view
+            let scoreView = new scoreView({model: exerciseModel, 
+                bus: this.bus});
+            //add score to DOM
+            this.$scoreCont.html(scoreView.render().$el);
+            //display score 
             if(this.model.length) {
                 this.render();
             //no more exercise models left in collection
-            //complete the session
+            //complete the lesson
             } else {
-                //instanciate score view
-                let scoreView = new scoreView({model: this.exerciseModel, 
-                    bus: this.bus});
-                //add score to DOM
-                this.$scoreCont.html(scoreView.render().$el);
+
             }
         },
 
@@ -55,7 +55,7 @@ define([
             this.exerciseModel = this.model.pop();
 
             generateModuleView = new GenerateModuleView({model: this.exerciseModel, 
-                bus: self.bus});
+                bus: this.bus});
             this.$lessonCont.html(generateModuleView.render().$el);
             
             return this;

@@ -3,8 +3,7 @@ define([
     "../../templates/templates"
     ], 
     function ($, _, Backbone,Templates){
-
-    
+   
     var GenerateModuleView = Backbone.View.extend({
         tagName: "section",
 
@@ -26,11 +25,11 @@ define([
             var self = this,
                 inputVal = this.$el.find(".expression-result").val(),
                 answer = this.$el.find(".expression-result").data("value"),
+                numSteps = this.model.get("steps"),
                 currentIndex = this.model.get("currentStep");
 
             if(Number(inputVal) === answer) {
-                let numSteps = this.model.get("steps"),
-                    successRate = this.model.get("sucessRate");
+                let successRate = this.model.get("sucessRate");
                 //pass to the next test executed once per view lifecycle
                 this.model.setNextStep(currentIndex);
 
@@ -53,13 +52,16 @@ define([
                     //update fail rate
                     this.model.set("failRate", failRate + 1);
                     //incriment number of attempts
-                    this.model.set("numAttempts", numAttempts++);
+                    this.model.set("numAttempts", numAttempts + 1);
                     this.$el.find(".expression-container").addClass("incorrect");
                 } else {
-                    //set flag that exercise is complete
-                    this.model.set("isComplete", true); 
+                    this.model.setNextStep(currentIndex);
+                    if(this.model.get("currentStep") === numSteps) {
+                        //set flag that exercise is complete
+                        this.model.set("isComplete", true);               
+                        this.$el.find(".expression-container").addClass("fail");
+                    }
                     //pass to the next test, executed once per view lifecycle
-                    this.$el.find(".expression-container").addClass("fail");
                     setTimeout(_.bind(self.render, self), 4000);
                 }
             }
@@ -88,23 +90,7 @@ define([
             if(e.keyCode === 13) {
                 this.onValidate();
             }
-        },
-    
-        // evaluateAnswer: function(e) {
-        // var inputVal = $(e.currentTarget).val(),
-        //     answer = $(e.currentTarget).data("value");
-    
-        //     $(e.currentTarget).attr("class", "expression-result");
-    
-        //     if(inputVal.length > 0) {
-    
-        //         if (Number(inputVal) === answer) {
-        //             $(e.currentTarget).addClass("correct");
-        //         } else {
-        //             $(e.currentTarget).addClass("incorrect");
-        //         }
-        //     }
-        // }
+        }
     });
     return GenerateModuleView;
 });
