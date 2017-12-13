@@ -1,0 +1,21 @@
+   <div class="expression-container">
+       <span class="expression-body">{{expression}}</span>
+       <span class="expr-sum">&nbsp;=&nbsp;</span>
+       <input type="text" class="expression-result"
+       data-value="{{result}}"/>
+       <button class="validate-answer">Validate</button>
+       <span class="answer-icon">
+         <span class="correct-icon">Pass!</span>
+         <span class="incorrect-icon">Fail</span>
+       </span>
+       <span class="attempts-status">
+         <span class="attempts-counter hidden">
+            Attempts left: {{attemptsLeft}}
+         </span>
+         <span class="attempts-icon">
+           <span class="attempt-incorrect">
+             Incorrect
+           </span>
+         </span>
+       </span>
+   </div>
