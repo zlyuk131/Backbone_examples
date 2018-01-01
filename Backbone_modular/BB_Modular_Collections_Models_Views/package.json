@@ -1,6 +1,6 @@
 {
   "name": "BB_Modular_Models_Collections_Views",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Exercise to move BB Calc to react, with Express, Backbone, Require, Handlebars",
   "script": {
     "start": "node server.js"

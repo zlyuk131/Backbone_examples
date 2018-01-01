@@ -1,11 +1,25 @@
-   <div class="expression-container">
-       <span class="expression-body">{{expression}}</span>
-       <span class="expr-sum">&nbsp;=&nbsp;</span>
-       <input type="text" class="expression-result"
-       data-value="{{result}}"/>
-       <button class="validate-answer">Validate</button>
-       <span class="answer-icon">
-         <span class="correct-icon">Correct</span>
-         <span class="incorrect-icon">Incorrect</span>
-       </span>
+   <div class="exercise-container">
+      <div class="attempts-status">
+        <div class="attempts-icon">
+          <p class="attempts-correct hidden">
+            Answer is Correct!
+          </p>
+          <p class="attempts-incorrect hidden">
+            Answer is Incorrect. 
+          </p>
+        </div>
+        <p class="attempts-counter hidden">
+          <span class="no-attempts hidden">No</span>
+          Attempts left<span class = "attempts-left">
+            : {{attemptsLeft}}
+          </span>
+        </p>
+      </div>
+      <div class="expression-container">
+        <span class="expression-body">{{expression}}</span>
+        <span class="expr-sum">&nbsp;=&nbsp;</span>
+        <input type="text" class="expression-result"
+        data-value="{{result}}"/>
+        <button class="validate-answer">Validate</button>
+      </div>
    </div>

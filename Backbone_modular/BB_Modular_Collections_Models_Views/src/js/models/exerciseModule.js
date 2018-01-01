@@ -17,7 +17,7 @@ define([
             type: "default",
             steps: 10,
             currentStep: 0,
-            sucessRate: 0,
+            successRate: 0,
             failRate: 0,
             overallRate: 0, //success rate
             isPassed: false, //indicate if exercise is passed
@@ -25,8 +25,9 @@ define([
         };
     },
     initialize: function() {
-        this.on("change:sucessRate", this.onRateChange);
-        this.on("chage:currentStep", this.checkIsComplete);
+        this.on("change:successRate", this.onRateChange);
+        this.on("change:currentStep", this.checkIsComplete);
+        this.on("change:isComplete", this.checkIsPassed);        
     },
     //update rate ration of succes and fail exercises
     onRateChange: function() {
@@ -34,20 +35,20 @@ define([
     },
 
     updateSuccess: function() {
-        var newRate = Number(this.get("sucessRate")) + 1;
-        this.set("sucessRate", newRate);
+        var newRate = this.get("successRate") + 1;
+        this.set("successRate", newRate);
         this._updateoverallRate();       
     },
 
     updateFail: function() {
-        var newRate = Number(this.get("failRate")) + 1;
+        var newRate = this.get("failRate") + 1;
         this.set("failRate", newRate);
         this._updateoverallRate();
     },
     //private function
     _updateoverallRate: function() {
         var newOverallRate =
-        (this.get("sucessRate") / this.get("steps")) * 100;
+        (this.get("successRate") / this.get("steps")) * 100;
         this.set("overallRate", newOverallRate);
     },
     //returns success rate as percentage string
@@ -60,6 +61,7 @@ define([
             return "One or more attributes is empty string";
         }
     },
+
     checkIsComplete: function() {
         if (this.get("currentStep") === this.get("steps")) {
             //if success rate is >= 50%

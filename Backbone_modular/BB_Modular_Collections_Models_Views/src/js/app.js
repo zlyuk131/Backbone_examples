@@ -11,11 +11,13 @@ define([
     var initialize = function() {
       //add backbone event bus
       var eventBus = _.extend({}, Backbone.Events);
-
       //add first model to the collection
         var generatorModules = new GeneratorModules ([
-            new GeneratorModule({steps: 5, operator: "+"}),
-            new GeneratorModule({steps: 2, operator:"-"})
+            new GeneratorModule({steps: 1, operator: "+"}),
+            new GeneratorModule({steps: 5, operator: "+"}),            
+            new GeneratorModule({steps: 5, operator:"-"}),
+            new GeneratorModule({steps: 5, operator: "*"}),
+            new GeneratorModule({steps: 5, operator:"/"})
         ]);
  
         var modulesView = new ModulesView({model: generatorModules, 

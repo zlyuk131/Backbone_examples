@@ -13,11 +13,12 @@ gulp.task('compile-templates', function() {
    ))
    // Define templates as AMD modules
    .pipe(wrap('Handlebars.template(<%= contents %>)'))
+   //declare root object
    .pipe(declare({
        root: "templates",
        noRedeclare: true
      }))
-   .pipe(concat('templates.js'))
+   .pipe(concat('templates.js')) //concatinate all templates
  .pipe(wrap("define(['handlebars'], function (Handlebars){"
    +"Handlebars = Handlebars['default']; "
    +"var templates = Handlebars.templates || {}; "

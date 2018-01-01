@@ -1,14 +1,19 @@
 <div id="exercise-results">
     <div class="answer-counter">
-        <div class="correc">Correct answers:{{sucessRate}}</div>
-        <div class="incorrec">Incorrect answers:{{failRate}}</div>
+        <div class="correc">
+            Correct answers:<span class="answers-count">{{successRate}}</span>
+            </div>
+        <div class="incorrec">
+            Incorrect answers:<span class="answers-count">{{failRate}}</span>
+        </div>
+        <br/>
         <button class="continue">Continue</button>
     </div>
-    <div class="answer-icon">
+    <div class="lesson-status ">
         {{#if isPassed}}
-        <span class="icon-correct"></span>
+        <span class="pass-icon">Pass!</span>
         {{else}}
-        <span class="icon-incorrect"></span>
+        <span class="fail-icon">Fail</span>
         {{/if}}
     </div>
 </div>

@@ -8,7 +8,6 @@ define([
         //extend default properties inherited from parent class
         defaults: function() {
             /*options to set up new exercise test*/
-            //TODO future add inteface to setup test
             return _.extend(ExerciseModule.prototype.defaults(), {
                 testType: "",
                 operator: "",
@@ -17,7 +16,6 @@ define([
                 exercises: []
             });
         },
-        //TODO extend validation
         //pass arguments from instanciation
         initialize: function(options) {
     
@@ -38,10 +36,19 @@ define([
                 this.genereateTest();
             }
         },
+
         setNextStep: function(currentIndex) {
+            //reset number of attempts
             this.set("numAttempts", 1);
+            //increment current step index used to get current exercise
             this.set("currentStep", currentIndex + 1);
         },
+
+        updateNumberAttempts: function() {
+            var newAttempts = this.get("numAttempts") + 1;
+            this.set("numAttempts", newAttempts);
+        },
+
         // @param operator {string} - values "+","-","*","/"
         genereateTest: function() {
             var self = this,
@@ -61,6 +68,7 @@ define([
                             break;
                         case "-":
                             result = a - b;
+
                             break;
                         case "*":
                             result = a * b;

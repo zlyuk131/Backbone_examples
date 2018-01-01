@@ -1,62 +1,133 @@
+/* General styles */
 span {
-    padding: 0 0.5em;
-  }
-  .expression-container {
-    position:relative;
-    margin-bottom: 2px;
-  }
-  .expression-body {
-    width:6em;
-  }
-  .expr-sum {
-    position: absolute;
-    left: 3.5em;
-    width:1em;
-    text-align: center;
-  }
-  .expression-result{
-    position: absolute;     
-    left: 7em;
-    width: 2em;
- 
-  }
-  .correct .expression-result{
-    border: 2px solid green;
-  }
-  .incorrect .expression-result{
-    border: 2px solid red;
-  }
-  .validate-answer {
-    position: absolute;
-    left:9.5em;
-  }
-  .correct .validate-answer {
-    display: none;
-  }
-  .fail .validate-answer {
-    display: none;
-  }
-  /* Do not display */
-  .answer-icon {
-    position: absolute;
-    left:9.5em;
-    display: none;
-  }
-  .correct .answer-icon,
-  .correct .correct-icon {
-    display: inline-block;
-  }
-  .fail .answer-icon,
-  .fail .incorrect-icon{
-    display: inline-block;
-  }
- 
-  .correct-icon {
-    display: none;
-    color: greenyellow;
-  }
-  .incorrect-icon {
-    display: none;
-    color: red;
-  }
- 
+  padding: 0 0.5em;
+}
+
+#container {
+  position: relative;
+  width: 400px;
+  height: 200px;
+  margin: 5% auto;
+  border: 2px solid #a9a9a9;
+  border-radius: 4px;
+  box-shadow: 0px 4px 10px 2px #b5b5b5;
+}
+
+button {
+  border: 2px solid #7b7b7b;
+  height: 21px;
+  border-radius: 3px;
+
+}
+
+#container > div {
+  padding: 10px;
+}
+
+#container .hidden {
+  display: none;
+}
+/* Title styles */
+.title {
+  text-align: center;
+}
+
+/* Expression  */
+.exercise-container {
+  position:relative;
+  margin-bottom: 2px;
+}
+.exercise-container div{
+  position: relative;
+}
+
+.expression-container {
+  width: 230px;
+  margin: 5px auto;
+  padding: 0;
+}
+
+.expression-body {
+  width:6em;
+}
+.expr-sum {
+  position: absolute;
+  left: 3.5em;
+  width:1em;
+  text-align: center;
+}
+
+.expression-result{
+  position: absolute;     
+  left: 7em;
+  width: 2em;
+}
+
+.attempts-counter {
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.attempts-counter .attempts-left{
+  color: blue;
+}
+
+.attempts-icon {
+  display: inline-block;
+}
+
+.attempts-icon .attempts-incorrect {  
+  color: red;
+  padding-left: 40px;
+}
+.attempts-icon .attempts-correct { 
+  color: green;
+  padding-left: 130px;
+}
+
+.correct .expression-result{
+  border: 2px solid green;
+}
+.incorrect .expression-result{
+  border: 2px solid red;
+}
+.validate-answer {
+  position: absolute;
+  left:9.5em;
+}
+
+/* Do not display */
+.answer-icon {
+  position: absolute;
+  left:9.5em;
+  display: none;
+}
+
+.lesson-icon,
+.pass-icon,
+.fail-icon {
+  display: inline-block;
+  font-size: 2em;
+  padding-left: 140px;
+}
+
+.pass-icon {
+  color: green;
+}
+
+.fail-icon {
+  color: red;
+}
+
+/* Score template styles */
+#exercise-results {
+  margin-left: 20px;
+}
+#exercise-results > div {
+  position: relative;
+}
+
+#exercise-results .answers-count{
+  position: absolute;
+  left: 125px;
+}

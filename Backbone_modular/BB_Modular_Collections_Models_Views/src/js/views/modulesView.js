@@ -1,11 +1,13 @@
 define([
     "jquery","underscore","backbone",
     "../../templates/templates",    
-    "./generateModuleView"
+    "./generateModuleView",
+    "./scoreView"
     ], 
-    function ($, _, Backbone, Templates, GenerateModuleView){
+    function ($, _, Backbone, Templates, GenerateModuleView, ScoreView){
 
     var ModulesView = Backbone.View.extend({
+        //get lesson template from precompiled template bundle
         template: Templates.lesson,
         initialize: function (options) {
             //setup view element
@@ -14,10 +16,8 @@ define([
             this.$scoreCont = this.$el.find("#score-container");
             //set event bus
             this.bus = options.bus;
-            this.initEvents();
-            
+            this.initEvents();        
         },
-        //TODO Finish display score
         //initialize event bus handlers
         initEvents: function() {
             //dis
@@ -26,18 +26,22 @@ define([
 
         displayScore: function(exerciseModel) {
             //instanciate score view
-            let scoreView = new scoreView({model: exerciseModel, 
+            let scoreView = new ScoreView({model: exerciseModel, 
                 bus: this.bus});
+            var self = this;
             //add score to DOM
             this.$scoreCont.html(scoreView.render().$el);
             //display score 
-            if(this.model.length) {
-                this.render();
-            //no more exercise models left in collection
-            //complete the lesson
-            } else {
+            this.listenTo(scoreView, "onContinue", function(){
 
-            }
+                if(self.model.length) {
+                    self.render();
+                    //no more exercise models left in collection
+                    //complete the lesson
+                } else {
+                    console.log("End of the exercise");
+                }
+            });
         },
 
         startLesson: function() {
@@ -52,7 +56,7 @@ define([
         render: function() {
             var generateModuleView;
                 
-            this.exerciseModel = this.model.pop();
+            this.exerciseModel = this.model.shift();
 
             generateModuleView = new GenerateModuleView({model: this.exerciseModel, 
                 bus: this.bus});
